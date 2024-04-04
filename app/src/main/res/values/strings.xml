@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Eventos</string>
+    <string name="let_s_get_started">Let’s Get Started</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in_into_your_account">Sign in into your account</string>
+    <string name="hey_welcome_back">Hey, Welcome back</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="you_don_t_have_an_account_singup">You don’t have an account ? singup</string>
+    <string name="here">here</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="by_creating_an_account_or_login_you_accepted_our">By creating an account or login you accepted our</string>
+    <string name="terms_and_condition">Terms and condition</string>
+    <string name="login">LOGIN</string>
+    <string name="welcome_to_our_page_we_re_so_excited_to_see_you_among_us">Welcome to our page we’re so excited to see You among us</string>
+    <string name="username">Username</string>
+    <string name="already_have_an_account_singin">Already have an account ? singin</string>
+    <string name="sign_up">SIGN UP</string>
+</resources>
