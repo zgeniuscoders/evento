@@ -10,4 +10,14 @@
         android:name="cd.zgeniuscoders.eventos.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="cd.zgeniuscoders.eventos.AddEventFragment"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="cd.zgeniuscoders.eventos.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" />
 </navigation>

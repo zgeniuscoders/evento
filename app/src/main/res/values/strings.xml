@@ -22,4 +22,8 @@
     <string name="interest_desc">Choose your favorite interest to get new shows</string>
     <string name="comming">Comming</string>
     <string name="see_all">See All</string>
+    <string name="popular">Popular</string>
+    <string name="home">Home</string>
+    <string name="calendar">Calendar</string>
+    <string name="add_event">Add Event</string>
 </resources>
