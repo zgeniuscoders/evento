@@ -1,5 +1,6 @@
 package cd.zgeniuscoders.eventos
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
@@ -84,7 +85,6 @@ class InterestActivity : AppCompatActivity() {
             createChip(chip)
         }
 
-
         val chip: ChipGroup = binding.chipEntryGroup
         chip.setOnCheckedStateChangeListener { group, checkedIds ->
             try {
@@ -100,6 +100,13 @@ class InterestActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 Toast.makeText(this, "empty", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        binding.btnNext.setOnClickListener {
+            Intent(this, MainActivity::class.java).apply {
+                startActivity(this)
+                finish()
             }
         }
     }

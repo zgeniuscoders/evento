@@ -20,4 +20,6 @@
     <string name="sign_up">SIGN UP</string>
     <string name="your_interests">Choose interests</string>
     <string name="interest_desc">Choose your favorite interest to get new shows</string>
+    <string name="comming">Comming</string>
+    <string name="see_all">See All</string>
 </resources>
