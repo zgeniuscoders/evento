@@ -1,5 +1,6 @@
 package cd.zgeniuscoders.eventos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,13 @@ class LoginFragment : Fragment() {
 
         binding.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+
+        binding.btnLogin.setOnClickListener {
+            Intent(requireContext(), InterestActivity::class.java).apply {
+                startActivity(this)
+            }
         }
 
         return binding.root

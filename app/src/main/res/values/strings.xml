@@ -18,4 +18,6 @@
     <string name="username">Username</string>
     <string name="already_have_an_account_singin">Already have an account ? singin</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="your_interests">Choose interests</string>
+    <string name="interest_desc">Choose your favorite interest to get new shows</string>
 </resources>
