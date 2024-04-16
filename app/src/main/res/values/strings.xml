@@ -26,4 +26,11 @@
     <string name="home">Home</string>
     <string name="calendar">Calendar</string>
     <string name="add_event">Add Event</string>
+    <string name="description">Description</string>
+    <string name="Interest">interest</string>
+    <string name="interest_persons">interest persons</string>
+    <string name="event_name">Event name</string>
+    <string name="event_start_at">Start date</string>
+    <string name="event_end_at">Ends date</string>
+    <string name="publish">publish</string>
 </resources>

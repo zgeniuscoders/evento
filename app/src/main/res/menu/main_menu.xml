@@ -2,5 +2,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/homeFragment" android:icon="@drawable/home" android:title="@string/home"/>
     <item android:id="@+id/calendarFragment" android:icon="@drawable/calendar" android:title="@string/calendar"/>
-    <item android:id="@+id/addEventFragment" android:icon="@drawable/add" android:title="@string/add_event"/>
 </menu>

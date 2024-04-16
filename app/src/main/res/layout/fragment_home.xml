@@ -77,7 +77,7 @@
             android:id="@+id/recyclerViewCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_category" />
@@ -153,7 +153,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:ignore="RtlSymmetry"
             tools:listitem="@layout/item_event" />
-
 
     </LinearLayout>
 
