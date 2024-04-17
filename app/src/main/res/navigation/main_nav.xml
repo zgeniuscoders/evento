@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="cd.zgeniuscoders.eventos.HomeFragment"
+        android:name="cd.zgeniuscoders.eventos.views.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="cd.zgeniuscoders.eventos.CalendarFragment"
+        android:name="cd.zgeniuscoders.eventos.views.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
 </navigation>

@@ -1,10 +1,11 @@
-package cd.zgeniuscoders.eventos
+package cd.zgeniuscoders.eventos.views
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cd.zgeniuscoders.eventos.R
 
 class AddEventActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

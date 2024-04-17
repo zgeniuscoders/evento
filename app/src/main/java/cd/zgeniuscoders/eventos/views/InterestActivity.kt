@@ -1,9 +1,8 @@
-package cd.zgeniuscoders.eventos
+package cd.zgeniuscoders.eventos.views
 
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.ActivityInterestBinding
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup

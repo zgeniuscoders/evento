@@ -13,19 +13,19 @@
         android:theme="@style/Theme.Eventos"
         tools:targetApi="31">
         <activity
-            android:name=".AddEventActivity"
+            android:name=".views.AddEventActivity"
             android:exported="false" />
         <activity
-            android:name=".EventActivity"
+            android:name=".views.EventActivity"
             android:exported="false" />
         <activity
-            android:name=".AllEventActivity"
+            android:name=".views.AllEventActivity"
             android:exported="false" />
         <activity
-            android:name=".InterestActivity"
+            android:name=".views.InterestActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".views.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".views.MainActivity"
             android:exported="false" />
     </application>
 

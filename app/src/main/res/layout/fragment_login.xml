@@ -7,7 +7,7 @@
     android:background="@color/dark"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    tools:context=".LoginFragment">
+    tools:context=".views.LoginFragment">
 
     <TextView
         android:layout_marginTop="40dp"

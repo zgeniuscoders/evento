@@ -1,4 +1,4 @@
-package cd.zgeniuscoders.eventos
+package cd.zgeniuscoders.eventos.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.FragmentLoginBinding
 
 

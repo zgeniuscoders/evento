@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783318966921",
+    "project_id": "eventos-b0778",
+    "storage_bucket": "eventos-b0778.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783318966921:android:a7569c39e74db4b0c49c58",
+        "android_client_info": {
+          "package_name": "cd.zgeniuscoders.eventos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO5WlxPa_VD0T_m2JgZbI1wEklBfzpIvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

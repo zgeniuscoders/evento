@@ -1,4 +1,4 @@
-package cd.zgeniuscoders.eventos
+package cd.zgeniuscoders.eventos.views
 
 import android.os.Bundle
 import android.view.View

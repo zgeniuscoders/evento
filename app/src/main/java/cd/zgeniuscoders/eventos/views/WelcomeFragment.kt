@@ -1,4 +1,4 @@
-package cd.zgeniuscoders.eventos
+package cd.zgeniuscoders.eventos.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,19 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import cd.zgeniuscoders.eventos.databinding.FragmentRegisterBinding
+import cd.zgeniuscoders.eventos.R
+import cd.zgeniuscoders.eventos.databinding.FragmentWelcomeBinding
 
-class RegisterFragment : Fragment() {
+class WelcomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentRegisterBinding
+    private lateinit var binding: FragmentWelcomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRegisterBinding.inflate(layoutInflater)
+        binding = FragmentWelcomeBinding.inflate(layoutInflater)
+
 
         binding.btnLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
 
         return binding.root
