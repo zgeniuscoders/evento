@@ -13,7 +13,6 @@ import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.FragmentLoginBinding
 import cd.zgeniuscoders.eventos.viewModel.LoginViewModel
 
-
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
@@ -29,23 +28,42 @@ class LoginFragment : Fragment() {
         }
 
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        val email = binding.edtEmail.text.toString()
-        val password = binding.edtPassword.text.toString()
+
+        val emailLayout = binding.layoutEdtEmail
+        val passwordLayout = binding.layoutEdtPassword
+
+        val email = binding.edtEmail.text
+        val password = binding.edtPassword.text
 
         binding.btnLogin.setOnClickListener {
 
-            loginViewModel.login(email, password)
-            loginViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
-                if (isLogged) {
-                    Intent(requireContext(), InterestActivity::class.java).apply {
-                        startActivity(this)
+            if (email!!.isNotEmpty() && password!!.isNotEmpty()) {
+                emailLayout.isErrorEnabled = false
+                passwordLayout.isErrorEnabled = false
+
+                loginViewModel.login(email.toString(), password.toString())
+                loginViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
+                    if (isLogged) {
+                        Intent(requireContext(), InterestActivity::class.java).apply {
+                            startActivity(this)
+                        }
                     }
                 }
+
+                loginViewModel.error.observe(viewLifecycleOwner) { error ->
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                }
+
+
+            } else {
+                emailLayout.isErrorEnabled = true
+                emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
+
+                passwordLayout.isErrorEnabled = true
+                passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
+
             }
 
-            loginViewModel.error.observe(viewLifecycleOwner) { error ->
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
-            }
 
         }
 

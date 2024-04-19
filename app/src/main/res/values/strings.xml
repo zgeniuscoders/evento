@@ -33,4 +33,7 @@
     <string name="event_start_at">Start date</string>
     <string name="event_end_at">Ends date</string>
     <string name="publish">publish</string>
+    <string name="this_email_field_cannot_be_empty">This email field cannot be empty</string>
+    <string name="this_password_field_cannot_be_empty">This password field cannot be empty</string>
+    <string name="this_username_field_cannot_be_empty">This username field cannot be empty</string>
 </resources>
