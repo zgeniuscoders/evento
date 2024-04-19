@@ -7,16 +7,16 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 abstract class Repository {
-    protected val collection = "users"
+    protected open val collection = "users"
 
     private fun getCollections(): CollectionReference {
         return FirebaseFirestore.getInstance().collection(this.collection)
     }
 
-    fun all(): CollectionReference {
+    open fun all(): CollectionReference {
         return getCollections()
     }
-    fun find(id: String): DocumentReference {
+    open fun find(id: String): DocumentReference {
         return getCollections().document(id)
     }
 
