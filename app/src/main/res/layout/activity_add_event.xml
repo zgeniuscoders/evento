@@ -81,7 +81,22 @@
                 android:layout_height="match_parent"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            app:strokeWidth="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_publish"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/publish"

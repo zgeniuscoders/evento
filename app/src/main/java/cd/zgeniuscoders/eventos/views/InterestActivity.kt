@@ -10,15 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.ActivityInterestBinding
+import cd.zgeniuscoders.eventos.viewModel.InterestViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import java.util.ArrayList
 
 class InterestActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInterestBinding
+    private lateinit var interestViewModel: InterestViewModel
+
     private val interests = ArrayList<String>()
     private val interestsApp: ArrayList<String> = arrayListOf(
         "Travel",
@@ -72,7 +75,10 @@ class InterestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         binding = ActivityInterestBinding.inflate(layoutInflater)
+        interestViewModel = ViewModelProvider(this)[InterestViewModel::class.java]
+
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -104,9 +110,14 @@ class InterestActivity : AppCompatActivity() {
         }
 
         binding.btnNext.setOnClickListener {
-            Intent(this, MainActivity::class.java).apply {
-                startActivity(this)
-                finish()
+            interestViewModel.addInterest(interests)
+            interestViewModel.isUpdated.observe(this) { isUpdated ->
+                if (isUpdated) {
+                    Intent(this, MainActivity::class.java).apply {
+                        startActivity(this)
+                        finish()
+                    }
+                }
             }
         }
     }

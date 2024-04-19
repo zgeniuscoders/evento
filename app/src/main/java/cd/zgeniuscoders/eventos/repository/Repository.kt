@@ -28,8 +28,8 @@ abstract class Repository {
         find(id).delete()
     }
 
-    fun update(id:String, data: HashMap<String,Any>){
-        find(id).update(data)
+    fun update(id:String, data: HashMap<String,Any>): Task<Void> {
+        return find(id).update(data)
     }
 
 }
