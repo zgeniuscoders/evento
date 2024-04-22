@@ -19,8 +19,10 @@ class EventViewModel : ViewModel() {
     val isCreated: LiveData<Boolean> = _isCreated
     val error: LiveData<String> = _error
 
-    fun create(title: String, description: String, startAt: String, endAt: String) {
-
+    fun create(event: Event) {
+        eventRepository.create(event){
+            _isCreated.postValue(it)
+        }
     }
 
 

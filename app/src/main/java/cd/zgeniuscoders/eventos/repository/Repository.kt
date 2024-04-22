@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 abstract class Repository {
     protected open val collection = "users"
 
-    private fun getCollections(): CollectionReference {
+    protected fun getCollections(): CollectionReference {
         return FirebaseFirestore.getInstance().collection(this.collection)
     }
 

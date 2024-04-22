@@ -1,5 +1,6 @@
 package cd.zgeniuscoders.eventos.views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +29,11 @@ class HomeFragment : Fragment() {
             binding.recyclerViewCategory.adapter = categoryAdapter
         }
 
+        binding.btnAddEvent.setOnClickListener {
+            Intent(requireContext(), AddEventActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
 
         return binding.root
     }
