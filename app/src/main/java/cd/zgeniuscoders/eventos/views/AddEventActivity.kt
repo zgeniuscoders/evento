@@ -143,6 +143,7 @@ class AddEventActivity : AppCompatActivity() {
         descriptionEdt.setText("")
         startAtEdt.setText("")
         endAtEdt.setText("")
+        categoryList[0]
     }
 
     private fun initialiseFieldVar() {
@@ -196,6 +197,13 @@ class AddEventActivity : AppCompatActivity() {
             hasError = false
             endAtLayout.error = null
             endAtLayout.isErrorEnabled = false
+        }
+
+        if (categoryList[binding.eventCategory.selectedItemPosition] == getString(R.string.select_a_category)){
+            hasError = true
+            Toast.makeText(this, "Please select a category", Toast.LENGTH_LONG).show()
+        }else{
+            hasError = false
         }
 
         if (coverImage == null) {

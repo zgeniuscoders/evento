@@ -9,4 +9,6 @@ data class Event(
     val photo: String,
     val startAt: String,
     val endAt: String
-)
+){
+    constructor(): this("","","","","","","","")
+}
