@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import cd.zgeniuscoders.eventos.databinding.ActivityAddEventBinding
 import cd.zgeniuscoders.eventos.models.Event
 import cd.zgeniuscoders.eventos.utilities.generateKey
 import cd.zgeniuscoders.eventos.utilities.getCurrentUser
+import cd.zgeniuscoders.eventos.viewModel.CategoryViewModel
 import cd.zgeniuscoders.eventos.viewModel.EventViewModel
 import cd.zgeniuscoders.eventos.viewModel.UploadViewModel
 import com.google.android.material.textfield.TextInputEditText
@@ -36,8 +38,10 @@ class AddEventActivity : AppCompatActivity() {
     private lateinit var startAtLayout: TextInputLayout
     private lateinit var endAtLayout: TextInputLayout
 
-    var coverImage: Uri? = null
-    var hasError = true
+    lateinit var categoryList: ArrayList<String>
+
+    private var coverImage: Uri? = null
+    private var hasError = true
 
     private var launchGalleryActivity = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -55,14 +59,16 @@ class AddEventActivity : AppCompatActivity() {
         eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
         uploadViewModel = ViewModelProvider(this)[UploadViewModel::class.java]
 
+        setContentView(binding.root)
         initialiseFieldVar()
 
-        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        getCategoryList()
 
         binding.img.setOnClickListener {
             val intent = Intent("android.intent.action.GET_CONTENT")
@@ -93,6 +99,7 @@ class AddEventActivity : AppCompatActivity() {
                         getCurrentUser()!!.uid,
                         title,
                         description,
+                        categoryList[binding.eventCategory.selectedItemPosition],
                         imgUrl,
                         startAt,
                         endAt
@@ -113,6 +120,22 @@ class AddEventActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun getCategoryList() {
+        categoryList = ArrayList()
+        val categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+        categoryViewModel.all()
+        categoryViewModel.categories.observe(this){categories ->
+
+            categoryList.add(0, getString(R.string.select_a_category))
+            for(cat in categories){
+                categoryList.add(cat.name)
+            }
+
+            val arrayAdapter = ArrayAdapter(this, R.layout.item_dropdown, categoryList)
+            binding.eventCategory.adapter = arrayAdapter
+        }
     }
 
     private fun emptyFields() {
