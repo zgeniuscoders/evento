@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import cd.zgeniuscoders.eventos.adapter.CategoryAdapter
 import cd.zgeniuscoders.eventos.adapter.EventAdapter
+import cd.zgeniuscoders.eventos.adapter.PopularEventAdapter
 import cd.zgeniuscoders.eventos.databinding.FragmentHomeBinding
 import cd.zgeniuscoders.eventos.viewModel.CategoryViewModel
 import cd.zgeniuscoders.eventos.viewModel.EventViewModel
@@ -37,6 +38,9 @@ class HomeFragment : Fragment() {
         eventViewModel.events.observe(viewLifecycleOwner){events ->
             val eventAdapter = EventAdapter(requireContext(),events)
             binding.recyclerViewEvents.adapter = eventAdapter
+
+            val popularEventAdapter = PopularEventAdapter(requireContext(),events)
+            binding.recyclerViewPopularEvent.adapter = popularEventAdapter
         }
 
         binding.btnAddEvent.setOnClickListener {
