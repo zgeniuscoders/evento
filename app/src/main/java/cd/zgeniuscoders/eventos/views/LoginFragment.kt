@@ -1,5 +1,6 @@
 package cd.zgeniuscoders.eventos.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +13,14 @@ import androidx.navigation.fragment.findNavController
 import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.FragmentLoginBinding
 import cd.zgeniuscoders.eventos.viewModel.LoginViewModel
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var loginViewModel: LoginViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,37 +35,72 @@ class LoginFragment : Fragment() {
 
         val emailLayout = binding.layoutEdtEmail
         val passwordLayout = binding.layoutEdtPassword
+        val btnLogin: MaterialButton = binding.btnLogin
 
-        val email = binding.edtEmail.text
-        val password = binding.edtPassword.text
+        val emailEdt : TextInputEditText = binding.edtEmail
+        val passwordEdt : TextInputEditText = binding.edtPassword
 
-        binding.btnLogin.setOnClickListener {
+        var hasError = true
+        btnLogin.setOnClickListener {
 
-            if (email!!.isNotEmpty() && password!!.isNotEmpty()) {
+            btnLogin.isEnabled = false
+
+            val email = emailEdt.text
+            val password = passwordEdt.text
+
+            if (email!!.isEmpty()) {
+
+                hasError = true
+                emailLayout.isErrorEnabled = true
+                emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
+                btnLogin.isEnabled = true
+
+            } else {
+                btnLogin.isEnabled = false
                 emailLayout.isErrorEnabled = false
+                hasError = false
+            }
+
+            if (password!!.isEmpty()) {
+
+                hasError = true
+                passwordLayout.isErrorEnabled = true
+                passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
+                btnLogin.isEnabled = true
+
+            } else {
+                btnLogin.isEnabled = false
                 passwordLayout.isErrorEnabled = false
+                hasError = false
+                passwordEdt.setText("")
+            }
+
+            if (!hasError) {
 
                 loginViewModel.login(email.toString(), password.toString())
                 loginViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
                     if (isLogged) {
-                        Intent(requireContext(), InterestActivity::class.java).apply {
+
+                        val sharePref =
+                            requireContext().getSharedPreferences("auth", Context.MODE_PRIVATE)
+                        val sharePrefEditor = sharePref.edit()
+                        sharePrefEditor.putBoolean("isLogged", true)
+                        sharePrefEditor.apply()
+
+                        Intent(requireContext(), MainActivity::class.java).apply {
                             startActivity(this)
                         }
+
                     }
                 }
 
                 loginViewModel.error.observe(viewLifecycleOwner) { error ->
+                    btnLogin.isEnabled = true
                     Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
                 }
 
-
-            } else {
-                emailLayout.isErrorEnabled = true
-                emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
-
-                passwordLayout.isErrorEnabled = true
-                passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
-
+            }else{
+                btnLogin.isEnabled = true
             }
 
 
