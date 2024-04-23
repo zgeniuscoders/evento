@@ -20,7 +20,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="your_interests">Choose interests</string>
     <string name="interest_desc">Choose your favorite interest to get new shows</string>
-    <string name="comming">Comming</string>
+    <string name="comming">Coming</string>
     <string name="see_all">See All</string>
     <string name="popular">Popular</string>
     <string name="home">Home</string>
@@ -37,4 +37,6 @@
     <string name="this_password_field_cannot_be_empty">This password field cannot be empty</string>
     <string name="this_username_field_cannot_be_empty">This username field cannot be empty</string>
     <string name="select_a_category">Select a category</string>
+    <string name="favorite">Favorite</string>
+    <string name="all_events">All Events</string>
 </resources>

@@ -16,4 +16,9 @@
         android:name="cd.zgeniuscoders.eventos.views.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/favoriteEventFragment"
+        android:name="cd.zgeniuscoders.eventos.views.FavoriteEventFragment"
+        android:label="fragment_favorite_event"
+        tools:layout="@layout/fragment_favorite_event" />
 </navigation>

@@ -43,6 +43,20 @@ class HomeFragment : Fragment() {
             binding.recyclerViewPopularEvent.adapter = popularEventAdapter
         }
 
+        binding.seeAllPopularEvent.setOnClickListener {
+            Intent(requireContext(), AllEventActivity::class.java).apply {
+                this.putExtra("coming", false)
+                startActivity(this)
+            }
+        }
+
+        binding.seeAllComingEvent.setOnClickListener {
+            Intent(requireContext(), AllEventActivity::class.java).apply {
+                this.putExtra("coming", true)
+                startActivity(this)
+            }
+        }
+
         binding.btnAddEvent.setOnClickListener {
             Intent(requireContext(), AddEventActivity::class.java).apply {
                 startActivity(this)

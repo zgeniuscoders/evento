@@ -106,6 +106,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/see_all_popular_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -141,6 +142,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/see_all_coming_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
