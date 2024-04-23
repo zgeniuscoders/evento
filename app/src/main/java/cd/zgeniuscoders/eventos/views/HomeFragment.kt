@@ -13,6 +13,7 @@ import cd.zgeniuscoders.eventos.adapter.EventAdapter
 import cd.zgeniuscoders.eventos.adapter.PopularEventAdapter
 import cd.zgeniuscoders.eventos.databinding.FragmentHomeBinding
 import cd.zgeniuscoders.eventos.models.Category
+import cd.zgeniuscoders.eventos.models.Event
 import cd.zgeniuscoders.eventos.viewModel.CategoryViewModel
 import cd.zgeniuscoders.eventos.viewModel.EventViewModel
 
@@ -20,6 +21,10 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var eventViewModel: EventViewModel
+    private lateinit var eventAdapter: EventAdapter
+
+    private var eventsList: List<Event> = emptyList()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,13 +37,17 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
         eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
         eventViewModel.all()
 
+        eventAdapter = EventAdapter(requireContext(), eventsList)
+
         categoryViewModel.categories.observe(viewLifecycleOwner){categories ->
-            val categoryAdapter = CategoryAdapter(categories, this)
+            val categoryAdapter = CategoryAdapter(requireContext(),categories, this)
             binding.recyclerViewCategory.adapter = categoryAdapter
         }
 
         eventViewModel.events.observe(viewLifecycleOwner){events ->
-            val eventAdapter = EventAdapter(requireContext(),events)
+
+            eventsList = events
+            eventAdapter.updateEventsList(events)
             binding.recyclerViewEvents.adapter = eventAdapter
 
             val popularEventAdapter = PopularEventAdapter(requireContext(),events)
@@ -69,7 +78,8 @@ class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
     }
 
     override fun onCategoryClicked(category: Category) {
-        Log.i("CATEGORY", category.name)
+        val filteredEvents = eventsList.filter { it.category == category.name }
+        eventAdapter.updateEventsList(filteredEvents)
     }
 
 }

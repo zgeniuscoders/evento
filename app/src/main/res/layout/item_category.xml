@@ -2,8 +2,9 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:id="@+id/card"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/primary"
+    android:backgroundTint="@color/dark_secondary"
     app:strokeColor="@color/dark_secondary"
     android:layout_marginHorizontal="10dp"
     android:padding="10dp">
@@ -14,5 +15,5 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textColor="@color/white"
-        android:text="Cetegory"/>
+        android:text="@string/cetegory"/>
 </com.google.android.material.card.MaterialCardView>
