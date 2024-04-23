@@ -2,6 +2,7 @@ package cd.zgeniuscoders.eventos.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,11 @@ import cd.zgeniuscoders.eventos.adapter.CategoryAdapter
 import cd.zgeniuscoders.eventos.adapter.EventAdapter
 import cd.zgeniuscoders.eventos.adapter.PopularEventAdapter
 import cd.zgeniuscoders.eventos.databinding.FragmentHomeBinding
+import cd.zgeniuscoders.eventos.models.Category
 import cd.zgeniuscoders.eventos.viewModel.CategoryViewModel
 import cd.zgeniuscoders.eventos.viewModel.EventViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoryAdapter.CategoryClickListener {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var eventViewModel: EventViewModel
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
         eventViewModel.all()
 
         categoryViewModel.categories.observe(viewLifecycleOwner){categories ->
-            val categoryAdapter = CategoryAdapter(categories)
+            val categoryAdapter = CategoryAdapter(categories, this)
             binding.recyclerViewCategory.adapter = categoryAdapter
         }
 
@@ -64,6 +66,10 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onCategoryClicked(category: Category) {
+        Log.i("CATEGORY", category.name)
     }
 
 }

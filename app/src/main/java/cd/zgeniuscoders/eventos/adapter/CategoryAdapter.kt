@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import cd.zgeniuscoders.eventos.databinding.ItemCategoryBinding
 import cd.zgeniuscoders.eventos.models.Category
 
-class CategoryAdapter(private var categories: List<Category>) :
+class CategoryAdapter(private var categories: List<Category>,private val listener: CategoryClickListener) :
     Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(binding: ItemCategoryBinding) : ViewHolder(binding.root) {
@@ -28,6 +28,12 @@ class CategoryAdapter(private var categories: List<Category>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.binding.name.text = category.name
+        holder.itemView.setOnClickListener {
+            listener.onCategoryClicked(category)
+        }
     }
 
+    interface CategoryClickListener{
+        fun onCategoryClicked(category: Category)
+    }
 }
