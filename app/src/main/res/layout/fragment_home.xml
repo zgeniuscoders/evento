@@ -162,6 +162,7 @@
                 android:paddingStart="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="RtlSymmetry"
+                android:layout_marginBottom="100dp"
                 tools:listitem="@layout/item_event" />
 
         </LinearLayout>

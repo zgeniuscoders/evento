@@ -40,4 +40,9 @@
     <string name="favorite">Favorite</string>
     <string name="all_events">All Events</string>
     <string name="cetegory">Cetegory</string>
+    <string name="get_tickey">Get Tickey</string>
+    <string name="month">Nov</string>
+    <string name="date">20</string>
+    <string name="cqtegory">Talkshow</string>
+    <string name="category">Category</string>
 </resources>
