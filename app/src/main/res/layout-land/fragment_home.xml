@@ -156,10 +156,10 @@
                 android:id="@+id/recyclerViewEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:nestedScrollingEnabled="true"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
                 tools:ignore="RtlSymmetry"
                 android:layout_marginBottom="100dp"
                 tools:listitem="@layout/item_event" />

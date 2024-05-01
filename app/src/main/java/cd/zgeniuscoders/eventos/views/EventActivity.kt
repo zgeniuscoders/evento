@@ -5,12 +5,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import cd.zgeniuscoders.eventos.R
+import cd.zgeniuscoders.eventos.adapter.CategoryAdapter
 import cd.zgeniuscoders.eventos.databinding.ActivityEventBinding
+import cd.zgeniuscoders.eventos.viewModel.CategoryViewModel
 import com.bumptech.glide.Glide
 
 class EventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEventBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

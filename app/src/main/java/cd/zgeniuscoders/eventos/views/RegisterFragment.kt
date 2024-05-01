@@ -12,11 +12,23 @@ import androidx.navigation.fragment.findNavController
 import cd.zgeniuscoders.eventos.R
 import cd.zgeniuscoders.eventos.databinding.FragmentRegisterBinding
 import cd.zgeniuscoders.eventos.viewModel.RegisterViewModel
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var registerViewModel: RegisterViewModel
+
+    private lateinit var email: TextInputEditText
+    private lateinit var username: TextInputEditText
+    private lateinit var password: TextInputEditText
+
+    private lateinit var emailLayout: TextInputLayout
+    private lateinit var passwordLayout: TextInputLayout
+    private lateinit var usernameLayout: TextInputLayout
+
+    private var isValid: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,49 +37,24 @@ class RegisterFragment : Fragment() {
 
         registerViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
 
-        val email = binding.edtEmail.text
-        val password = binding.edtPassword.text
-        val username = binding.edtUsername.text
+        email = binding.edtEmail
+        password = binding.edtPassword
+        username = binding.edtUsername
 
-        val emailLayout = binding.layoutEdtEmail
-        val passwordLayout = binding.layoutEdtPassword
-        val usernameLayout = binding.layoutEdtUsername
+        emailLayout = binding.layoutEdtEmail
+        passwordLayout = binding.layoutEdtPassword
+        usernameLayout = binding.layoutEdtUsername
 
-        var isValid: Boolean
         binding.btnRegister.setOnClickListener {
-            if (email!!.isEmpty()) {
-                emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
-                emailLayout.isErrorEnabled = true
-                isValid = false
-            } else {
-                isValid = true
-                emailLayout.isErrorEnabled = false
-            }
 
-            if (username!!.isEmpty()) {
-                usernameLayout.error = getString(R.string.this_username_field_cannot_be_empty)
-                usernameLayout.isErrorEnabled = true
-                isValid = false
-            } else {
-                isValid = true
-                usernameLayout.isErrorEnabled = false
-            }
-
-            if (password!!.isEmpty()) {
-                passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
-                passwordLayout.isErrorEnabled = true
-                isValid = false
-            } else {
-                isValid = true
-                passwordLayout.isErrorEnabled = false
-            }
+            validateFiled()
 
             if (isValid) {
 
                 registerViewModel.register(
-                    username.toString(),
-                    email.toString(),
-                    password.toString()
+                    username.text.toString(),
+                    email.text.toString(),
+                    password.text.toString()
                 )
 
                 registerViewModel.isRegistered.observe(viewLifecycleOwner) { isRegistered ->
@@ -90,6 +77,35 @@ class RegisterFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun validateFiled() {
+        if (email.text!!.isEmpty()) {
+            emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
+            emailLayout.isErrorEnabled = true
+            isValid = false
+        } else {
+            isValid = true
+            emailLayout.isErrorEnabled = false
+        }
+
+        if (username.text!!.isEmpty()) {
+            usernameLayout.error = getString(R.string.this_username_field_cannot_be_empty)
+            usernameLayout.isErrorEnabled = true
+            isValid = false
+        } else {
+            isValid = true
+            usernameLayout.isErrorEnabled = false
+        }
+
+        if (password.text!!.isEmpty()) {
+            passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
+            passwordLayout.isErrorEnabled = true
+            isValid = false
+        } else {
+            isValid = true
+            passwordLayout.isErrorEnabled = false
+        }
     }
 
 }

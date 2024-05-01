@@ -95,7 +95,7 @@ class LoginFragment : Fragment() {
                 }
 
                 loginViewModel.error.observe(viewLifecycleOwner) { error ->
-                    btnLogin.isEnabled = true
+                    btnLogin.isEnabled = false
                     Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
                 }
 
