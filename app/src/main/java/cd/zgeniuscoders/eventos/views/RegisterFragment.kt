@@ -24,11 +24,6 @@ class RegisterFragment : Fragment() {
     private lateinit var username: TextInputEditText
     private lateinit var password: TextInputEditText
 
-    private lateinit var emailLayout: TextInputLayout
-    private lateinit var passwordLayout: TextInputLayout
-    private lateinit var usernameLayout: TextInputLayout
-
-    private var isValid: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,34 +36,31 @@ class RegisterFragment : Fragment() {
         password = binding.edtPassword
         username = binding.edtUsername
 
-        emailLayout = binding.layoutEdtEmail
-        passwordLayout = binding.layoutEdtPassword
-        usernameLayout = binding.layoutEdtUsername
-
         binding.btnRegister.setOnClickListener {
 
-            validateFiled()
+            registerViewModel.validator(binding,requireContext())
+            registerViewModel.isValidated.observe(viewLifecycleOwner){isValid ->
+                if (isValid) {
 
-            if (isValid) {
+                    registerViewModel.register(
+                        username.text.toString(),
+                        email.text.toString(),
+                        password.text.toString()
+                    )
 
-                registerViewModel.register(
-                    username.text.toString(),
-                    email.text.toString(),
-                    password.text.toString()
-                )
-
-                registerViewModel.isRegistered.observe(viewLifecycleOwner) { isRegistered ->
-                    if (isRegistered) {
-                        Intent(requireContext(), InterestActivity::class.java).apply {
-                            startActivity(this)
+                    registerViewModel.isRegistered.observe(viewLifecycleOwner) { isRegistered ->
+                        if (isRegistered) {
+                            Intent(requireContext(), InterestActivity::class.java).apply {
+                                startActivity(this)
+                            }
                         }
                     }
-                }
 
-                registerViewModel.error.observe(viewLifecycleOwner) { error ->
-                    Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
-                }
+                    registerViewModel.error.observe(viewLifecycleOwner) { error ->
+                        Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                    }
 
+                }
             }
         }
 
@@ -79,33 +71,5 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
-    private fun validateFiled() {
-        if (email.text!!.isEmpty()) {
-            emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
-            emailLayout.isErrorEnabled = true
-            isValid = false
-        } else {
-            isValid = true
-            emailLayout.isErrorEnabled = false
-        }
-
-        if (username.text!!.isEmpty()) {
-            usernameLayout.error = getString(R.string.this_username_field_cannot_be_empty)
-            usernameLayout.isErrorEnabled = true
-            isValid = false
-        } else {
-            isValid = true
-            usernameLayout.isErrorEnabled = false
-        }
-
-        if (password.text!!.isEmpty()) {
-            passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
-            passwordLayout.isErrorEnabled = true
-            isValid = false
-        } else {
-            isValid = true
-            passwordLayout.isErrorEnabled = false
-        }
-    }
 
 }
