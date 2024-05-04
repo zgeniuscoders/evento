@@ -64,4 +64,6 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
 }

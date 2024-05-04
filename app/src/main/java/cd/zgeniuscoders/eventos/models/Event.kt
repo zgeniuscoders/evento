@@ -1,5 +1,7 @@
 package cd.zgeniuscoders.eventos.models
 
+import java.time.LocalDate
+
 data class Event(
     val id: String,
     val userId: String,
@@ -7,8 +9,8 @@ data class Event(
     val description: String,
     val category: String,
     val photo: String,
-    val startAt: String,
-    val endAt: String
+    val startAt: LocalDate,
+    val endAt: LocalDate
 ){
-    constructor(): this("","","","","","","","")
+    constructor(): this("","","","","","",LocalDate.now(),LocalDate.now())
 }

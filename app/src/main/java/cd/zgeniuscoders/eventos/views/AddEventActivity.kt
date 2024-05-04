@@ -88,33 +88,33 @@ class AddEventActivity : AppCompatActivity() {
 
                 binding.btnPublish.isEnabled = false
 
-                uploadViewModel.uploadImage(this, coverImage!!, "path")
-                uploadViewModel.error.observe(this) {
-                    Toast.makeText(this, it, Toast.LENGTH_LONG)
-                }
-                uploadViewModel.imageUrl.observe(this) { imgUrl ->
-
-                    val event = Event(
-                        generateKey("events"),
-                        getCurrentUser()!!.uid,
-                        title,
-                        description,
-                        categoryList[binding.eventCategory.selectedItemPosition],
-                        imgUrl,
-                        startAt,
-                        endAt
-                    )
-
-                    eventViewModel.create(event)
-                    eventViewModel.isCreated.observe(this) {
-                        binding.btnPublish.isEnabled = true
-                        if (it) {
-                            Toast.makeText(this, "event added succefuly", Toast.LENGTH_LONG)
-                            emptyFields()
-                        }
-                    }
-
-                }
+//                uploadViewModel.uploadImage(this, coverImage!!, "path")
+//                uploadViewModel.error.observe(this) {
+//                    Toast.makeText(this, it, Toast.LENGTH_LONG)
+//                }
+//                uploadViewModel.imageUrl.observe(this) { imgUrl ->
+//
+//                    val event = Event(
+//                        generateKey("events"),
+//                        getCurrentUser()!!.uid,
+//                        title,
+//                        description,
+//                        categoryList[binding.eventCategory.selectedItemPosition],
+//                        imgUrl,
+//                        startAt,
+//                        endAt
+//                    )
+//
+//                    eventViewModel.create(event)
+//                    eventViewModel.isCreated.observe(this) {
+//                        binding.btnPublish.isEnabled = true
+//                        if (it) {
+//                            Toast.makeText(this, "event added succefuly", Toast.LENGTH_LONG)
+//                            emptyFields()
+//                        }
+//                    }
+//
+//                }
 
             }
         }
