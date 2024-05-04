@@ -33,14 +33,11 @@ class LoginFragment : Fragment() {
 
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
-        val emailLayout = binding.layoutEdtEmail
-        val passwordLayout = binding.layoutEdtPassword
         val btnLogin: MaterialButton = binding.btnLogin
 
         val emailEdt : TextInputEditText = binding.edtEmail
         val passwordEdt : TextInputEditText = binding.edtPassword
 
-        var hasError = true
         btnLogin.setOnClickListener {
 
             btnLogin.isEnabled = false
@@ -48,61 +45,34 @@ class LoginFragment : Fragment() {
             val email = emailEdt.text
             val password = passwordEdt.text
 
-            if (email!!.isEmpty()) {
+            loginViewModel.validate(binding,requireContext())
+            loginViewModel.isValidated.observe(viewLifecycleOwner){isValidate ->
+                if (isValidate){
+                    loginViewModel.login(email.toString(), password.toString())
+                    loginViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
+                        if (isLogged) {
 
-                hasError = true
-                emailLayout.isErrorEnabled = true
-                emailLayout.error = getString(R.string.this_email_field_cannot_be_empty)
-                btnLogin.isEnabled = true
+                            val sharePref =
+                                requireContext().getSharedPreferences("auth", Context.MODE_PRIVATE)
+                            val sharePrefEditor = sharePref.edit()
+                            sharePrefEditor.putBoolean("isLogged", true)
+                            sharePrefEditor.apply()
 
-            } else {
-                btnLogin.isEnabled = false
-                emailLayout.isErrorEnabled = false
-                hasError = false
-            }
+                            Intent(requireContext(), MainActivity::class.java).apply {
+                                startActivity(this)
+                            }
 
-            if (password!!.isEmpty()) {
-
-                hasError = true
-                passwordLayout.isErrorEnabled = true
-                passwordLayout.error = getString(R.string.this_password_field_cannot_be_empty)
-                btnLogin.isEnabled = true
-
-            } else {
-                btnLogin.isEnabled = false
-                passwordLayout.isErrorEnabled = false
-                hasError = false
-                passwordEdt.setText("")
-            }
-
-            if (!hasError) {
-
-                loginViewModel.login(email.toString(), password.toString())
-                loginViewModel.isLogged.observe(viewLifecycleOwner) { isLogged ->
-                    if (isLogged) {
-
-                        val sharePref =
-                            requireContext().getSharedPreferences("auth", Context.MODE_PRIVATE)
-                        val sharePrefEditor = sharePref.edit()
-                        sharePrefEditor.putBoolean("isLogged", true)
-                        sharePrefEditor.apply()
-
-                        Intent(requireContext(), MainActivity::class.java).apply {
-                            startActivity(this)
                         }
-
                     }
-                }
 
-                loginViewModel.error.observe(viewLifecycleOwner) { error ->
-                    btnLogin.isEnabled = false
-                    Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                    loginViewModel.error.observe(viewLifecycleOwner) { error ->
+                        btnLogin.isEnabled = true
+                        Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+                    }
+                }else{
+                    btnLogin.isEnabled = true
                 }
-
-            }else{
-                btnLogin.isEnabled = true
             }
-
 
         }
 

@@ -1,11 +1,14 @@
 package cd.zgeniuscoders.eventos.viewModel
 
-import android.content.SharedPreferences
-import android.util.Log
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cd.zgeniuscoders.eventos.R
+import cd.zgeniuscoders.eventos.databinding.FragmentLoginBinding
 import cd.zgeniuscoders.eventos.models.User
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 
@@ -14,11 +17,14 @@ class LoginViewModel : ViewModel() {
     private val _user = MutableLiveData<User>()
     private val _isLogged = MutableLiveData<Boolean>()
     private val _error = MutableLiveData<String>()
+    private var _isValidated = MutableLiveData<Boolean>()
 
     private val mAuth = FirebaseAuth.getInstance()
 
     val isLogged: LiveData<Boolean> = _isLogged
     val error: LiveData<String> = _error
+    val isValidated: LiveData<Boolean> = _isValidated
+
 
     fun login(email: String, password: String){
 
@@ -57,6 +63,41 @@ class LoginViewModel : ViewModel() {
             }
         }
 
+    }
+
+    fun validate(binding: FragmentLoginBinding, context: Context) {
+        val emailLayout = binding.layoutEdtEmail
+        val passwordLayout = binding.layoutEdtPassword
+        val btnLogin: MaterialButton = binding.btnLogin
+
+        val email: TextInputEditText = binding.edtEmail
+        val password: TextInputEditText = binding.edtPassword
+
+        if (email.text!!.isEmpty()) {
+            _isValidated.postValue(false)
+            emailLayout.isErrorEnabled = true
+            emailLayout.error = context.getString(R.string.this_email_field_cannot_be_empty)
+            btnLogin.isEnabled = true
+
+        } else {
+            btnLogin.isEnabled = false
+            emailLayout.isErrorEnabled = false
+            _isValidated.postValue(true)
+        }
+
+        if (password.text!!.isEmpty()) {
+
+            _isValidated.postValue(false)
+            passwordLayout.isErrorEnabled = true
+            passwordLayout.error = context.getString(R.string.this_password_field_cannot_be_empty)
+            btnLogin.isEnabled = true
+
+        } else {
+            btnLogin.isEnabled = false
+            passwordLayout.isErrorEnabled = false
+            _isValidated.postValue(true)
+            password.setText("")
+        }
     }
 
 }
