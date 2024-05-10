@@ -66,4 +66,6 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
+    implementation("com.applandeo:material-calendar-view:1.9.0-rc03")
+
 }

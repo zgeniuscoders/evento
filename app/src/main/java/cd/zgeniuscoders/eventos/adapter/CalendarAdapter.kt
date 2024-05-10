@@ -1,10 +1,12 @@
 package cd.zgeniuscoders.eventos.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import cd.zgeniuscoders.eventos.R
@@ -13,6 +15,7 @@ import cd.zgeniuscoders.eventos.models.Event
 import java.time.LocalDate
 
 class CalendarAdapter(
+    private val context:Context,
     private var events: List<Event>,
     private val onDateSelected: (LocalDate) -> Unit
 ) : Adapter<CalendarAdapter.CalendarViewHolder>() {
@@ -34,13 +37,15 @@ class CalendarAdapter(
         )
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         val date = calculateDateForPosition(position)
         holder.binding.date.text = date.dayOfMonth.toString()
 
         // Highlight date with event
         if (events.any { it.startAt == date }) {
-            holder.itemView.setBackgroundColor(Color.RED)
+            holder.itemView.background = ContextCompat.getDrawable(context, R.drawable.bg_event_date_rounded)
+            holder.binding.date.setTextColor(R.color.white  )
         } else {
             holder.itemView.setBackgroundColor(Color.TRANSPARENT)
         }
@@ -77,6 +82,12 @@ class CalendarAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun submitList(eventsList: List<Event>) {
+        events = eventsList
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatedEventList(eventsList: List<Event>) {
         events = eventsList
         notifyDataSetChanged()
     }
