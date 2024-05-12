@@ -1,5 +1,6 @@
 package cd.zgeniuscoders.eventos.models
 
+import com.applandeo.materialcalendarview.EventDay
 import java.time.LocalDate
 
 data class Event(
@@ -9,8 +10,8 @@ data class Event(
     val description: String,
     val category: String,
     val photo: String,
-    val startAt: LocalDate,
-    val endAt: LocalDate
+    val startAt: EventDay?= null,
+    val endAt: EventDay? = null
 ){
-    constructor(): this("","","","","","",LocalDate.now(),LocalDate.now())
+    constructor(): this("","","","","","",null,null)
 }

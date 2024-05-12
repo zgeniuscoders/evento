@@ -3,6 +3,7 @@ package cd.zgeniuscoders.eventos.views
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,10 +38,12 @@ class CalendarFragment : Fragment(), OnDayClickListener, OnSelectDateListener {
         val note: EventDay = EventDay(calendar, R.color.primary)
         note.calendar.set(2024,4,12)
 
+        val note2: EventDay = EventDay(calendar, R.color.primary)
+        note.calendar.set(2024,5,15)
 
-        val eventDay = EventDay(calendar)
         notes.add(note)
-        binding.calendarView.setEvents(notes.toList())
+        notes.add(note2)
+        binding.calendarView.setEvents(notes)
 
         return binding.root
     }

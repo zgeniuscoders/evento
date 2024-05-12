@@ -37,16 +37,16 @@ class PopularEventAdapter(private val context: Context, private val events: List
 
 
         holder.binding.event.setOnClickListener {
-            Intent(context, EventActivity::class.java).apply {
-                putExtra("id", event.name)
-                putExtra("name", event.name)
-                putExtra("description", event.description)
-                putExtra("photo", event.photo)
-                putExtra("startAt", event.startAt)
-                putExtra("endAt", event.endAt)
-                putExtra("category", event.category)
-                context.startActivity(this)
-            }
+//            Intent(context, EventActivity::class.java).apply {
+//                putExtra("id", event.name)
+//                putExtra("name", event.name)
+//                putExtra("description", event.description)
+//                putExtra("photo", event.photo)
+//                putExtra("startAt", event.startAt)
+//                putExtra("endAt", event.endAt)
+//                putExtra("category", event.category)
+//                context.startActivity(this)
+//            }
         }
     }
 }
